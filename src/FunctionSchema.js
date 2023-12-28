@@ -1,11 +1,17 @@
 export default class {
 	constructor() {
-		this.props = 'none';
+		this.context = {};
 		this.expectedValue = 'none';
+		this.args = [];
 	}
 
 	callWith(props) {
-		this.props = props;
+		this.context = props;
+		return this;
+	}
+
+	arguments(args) {
+		this.args = args;
 		return this;
 	}
 
@@ -16,7 +22,7 @@ export default class {
 
 	isValid(value) {
 		if (typeof value !== 'function') return false;
-		const result = value.call(this.props);
+		const result = value.call(this.context, this.args);
 		return this.expectedValue === 'none'
 			? true
 			: result === this.expectedValue;
