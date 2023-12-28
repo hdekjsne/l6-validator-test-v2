@@ -9,7 +9,6 @@ export default class {
 	}
 
 	isValid(value) {
-		console.log(this.spacesCheck);
 		if (typeof value !== 'string') return false;
 		if (this.spacesCheck && !value.includes(' ')) return false;
 		return true;
